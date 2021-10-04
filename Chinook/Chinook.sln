@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinook.API", "Chinook.API\Chinook.API.csproj", "{0B469F6A-172E-419C-B9B8-EE69BA6AFDCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinook.Domain", "Chinook.Domain\Chinook.Domain.csproj", "{E09A98F2-71AC-4105-AB91-DEE7A6618DCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinook.Data", "Chinook.Data\Chinook.Data.csproj", "{1BE72E26-B8E7-44DF-999B-A359C527AFF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinook.UnitTest", "Chinook.UnitTest\Chinook.UnitTest.csproj", "{828B73B4-C6AD-4BBB-9C09-D19BB1BC7209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinook.IntegrationTest", "Chinook.IntegrationTest\Chinook.IntegrationTest.csproj", "{05E0854C-647C-4D69-8F43-A45EDCF19933}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B469F6A-172E-419C-B9B8-EE69BA6AFDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B469F6A-172E-419C-B9B8-EE69BA6AFDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B469F6A-172E-419C-B9B8-EE69BA6AFDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B469F6A-172E-419C-B9B8-EE69BA6AFDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E09A98F2-71AC-4105-AB91-DEE7A6618DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09A98F2-71AC-4105-AB91-DEE7A6618DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09A98F2-71AC-4105-AB91-DEE7A6618DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09A98F2-71AC-4105-AB91-DEE7A6618DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BE72E26-B8E7-44DF-999B-A359C527AFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BE72E26-B8E7-44DF-999B-A359C527AFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BE72E26-B8E7-44DF-999B-A359C527AFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BE72E26-B8E7-44DF-999B-A359C527AFF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{828B73B4-C6AD-4BBB-9C09-D19BB1BC7209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828B73B4-C6AD-4BBB-9C09-D19BB1BC7209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828B73B4-C6AD-4BBB-9C09-D19BB1BC7209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828B73B4-C6AD-4BBB-9C09-D19BB1BC7209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E0854C-647C-4D69-8F43-A45EDCF19933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E0854C-647C-4D69-8F43-A45EDCF19933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E0854C-647C-4D69-8F43-A45EDCF19933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E0854C-647C-4D69-8F43-A45EDCF19933}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A636E50-D4C9-4057-89BB-BC1EDF6C2AE3}
+	EndGlobalSection
+EndGlobal
