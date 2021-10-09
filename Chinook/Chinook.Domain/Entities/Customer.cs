@@ -10,7 +10,7 @@ namespace Chinook.Domain.Entities
         {
             Invoices = new HashSet<Invoice>();
         }
-        
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }

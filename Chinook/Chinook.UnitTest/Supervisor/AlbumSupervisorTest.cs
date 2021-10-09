@@ -25,13 +25,13 @@ namespace Chinook.UnitTest.Supervisor
             _context = new ChinookContext(builder.Options);
             _albumRepo = new AlbumRepository(_context);
             var artistRepo = new ArtistRepository(_context);
-            _super = new ChinookSupervisor(_albumRepo, artistRepo, null, null, 
-                null, null, null, null, 
+            _super = new ChinookSupervisor(_albumRepo, artistRepo, null, null,
+                null, null, null, null,
                 null, null, null, null,
                 null, null, null, null, null,
                 null, null, null, new MemoryCache(new MemoryCacheOptions()), null);
         }
-        
+
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public void Dispose()
         {

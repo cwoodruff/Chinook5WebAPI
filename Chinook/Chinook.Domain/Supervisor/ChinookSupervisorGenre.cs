@@ -19,12 +19,13 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var genre in genreApiModels)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Genre-", genre.Id), genre, (TimeSpan)cacheEntryOptions);
             }
-            
+
             return genreApiModels;
         }
 
@@ -43,9 +44,10 @@ namespace Chinook.Domain.Supervisor
                 var genreApiModel = genre.Convert();
                 genreApiModel.Tracks = (await GetTrackByGenreId(genreApiModel.Id)).ToList();
 
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Genre-", genreApiModel.Id), genreApiModel, (TimeSpan)cacheEntryOptions);
 
                 return genreApiModel;

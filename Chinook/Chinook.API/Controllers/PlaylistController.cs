@@ -15,7 +15,7 @@ namespace Chinook.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("CorsPolicy")]
-    [ApiVersion( "1.0" )]
+    [ApiVersion("1.0")]
     public class PlaylistController : ControllerBase
     {
         private readonly IChinookSupervisor _chinookSupervisor;
@@ -31,23 +31,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<PlaylistApiModel>>> Get()
         {
-            try  
-            {  
-                var playlists = await _chinookSupervisor.GetAllPlaylist();  
+            try
+            {
+                var playlists = await _chinookSupervisor.GetAllPlaylist();
 
-                if (playlists.Any())  
-                {  
-                    return Ok(playlists);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Playlists Could Be Found");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController Get action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Playlists");  
+                if (playlists.Any())
+                {
+                    return Ok(playlists);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Playlists Could Be Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController Get action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Playlists");
             }
         }
 
@@ -55,23 +56,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<PlaylistApiModel>> Get(int id)
         {
-            try  
-            {  
-                var playlist = await _chinookSupervisor.GetPlaylistById(id);  
+            try
+            {
+                var playlist = await _chinookSupervisor.GetPlaylistById(id);
 
-                if (playlist != null)  
-                {  
-                    return Ok(playlist);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "Playlist Not Found");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController GetById action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get Playlist By Id");  
+                if (playlist != null)
+                {
+                    return Ok(playlist);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "Playlist Not Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController GetById action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get Playlist By Id");
             }
         }
 
@@ -80,26 +82,28 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<PlaylistApiModel>> Post([FromBody] PlaylistApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Playlist is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.AddPlaylist(input));
-                }  
+                }
             }
-            catch (ValidationException  ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Playlists");  
+            catch (ValidationException ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Add Playlists");
             }
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Playlists");  
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Add Playlists");
             }
         }
 
@@ -108,40 +112,43 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<PlaylistApiModel>> Put(int id, [FromBody] PlaylistApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Playlist is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.UpdatePlaylist(input));
-                }  
+                }
             }
-            catch (ValidationException  ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Playlists");  
+            catch (ValidationException ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Add Playlists");
             }
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Playlists");  
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController Add Playlist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Add Playlists");
             }
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            try  
-            {  
-                return Ok(await _chinookSupervisor.DeletePlaylist(id)); 
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController GetById action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get Playlist By Id");  
+            try
+            {
+                return Ok(await _chinookSupervisor.DeletePlaylist(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController GetById action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get Playlist By Id");
             }
         }
 
@@ -149,23 +156,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<PlaylistApiModel>>> GetByTrackId(int id)
         {
-            try  
-            {  
-                var playlists = await _chinookSupervisor.GetPlaylistByTrackId(id);  
+            try
+            {
+                var playlists = await _chinookSupervisor.GetPlaylistByTrackId(id);
 
-                if (playlists.Any())  
-                {  
-                    return Ok(playlists);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Playlists Could Be Found for the Track");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the PlaylistController GetByTrackId action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Playlists for Track");  
+                if (playlists.Any())
+                {
+                    return Ok(playlists);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Playlists Could Be Found for the Track");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the PlaylistController GetByTrackId action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Playlists for Track");
             }
         }
     }

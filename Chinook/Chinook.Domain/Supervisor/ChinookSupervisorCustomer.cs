@@ -19,9 +19,10 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var customer in customerApiModels)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Customer-", customer.Id), customer, (TimeSpan)cacheEntryOptions);
             }
 
@@ -47,10 +48,12 @@ namespace Chinook.Domain.Supervisor
                 customerApiModel.SupportRepName =
                     $"{customerApiModel.SupportRep.LastName}, {customerApiModel.SupportRep.FirstName}";
 
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
-                _cache.Set(string.Concat("Customer-", customerApiModel.Id), customerApiModel, (TimeSpan)cacheEntryOptions);
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
+                _cache.Set(string.Concat("Customer-", customerApiModel.Id), customerApiModel,
+                    (TimeSpan)cacheEntryOptions);
 
                 return customerApiModel;
             }
@@ -62,9 +65,10 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var customer in customers)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Customer-", customer.Id), customer, (TimeSpan)cacheEntryOptions);
             }
 

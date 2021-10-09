@@ -10,7 +10,7 @@ namespace Chinook.Domain.Entities
         {
             PlaylistTracks = new HashSet<PlaylistTrack>();
         }
-        
+
         public string Name { get; set; }
 
 

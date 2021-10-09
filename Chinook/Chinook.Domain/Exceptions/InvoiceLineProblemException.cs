@@ -3,8 +3,9 @@ namespace Chinook.Domain.Exceptions
     public class InvoiceLineProblemException : ProblemDetailsException
     {
         public int InvoiceLineId { get; set; }
-        
-        public InvoiceLineProblemException(int status, string type, string title, string detail, string instance, int artistId)
+
+        public InvoiceLineProblemException(int status, string type, string title, string detail, string instance,
+            int artistId)
         {
             Status = status;
             Type = type;

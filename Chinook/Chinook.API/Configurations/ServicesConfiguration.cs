@@ -97,23 +97,26 @@ namespace Chinook.API.Configurations
         {
             services.Configure<JwtConfig>(configuration.GetSection("JwtConfig"));
 
-            services.AddAuthentication(options => {
+            services.AddAuthentication(options =>
+                {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddJwtBearer(jwt => {
+                .AddJwtBearer(jwt =>
+                {
                     var key = Encoding.ASCII.GetBytes(configuration["JwtConfig:Secret"]);
 
                     jwt.SaveToken = true;
-                    jwt.TokenValidationParameters = new TokenValidationParameters{
-                        ValidateIssuerSigningKey= true,
+                    jwt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = false, 
+                        ValidateIssuer = false,
                         ValidateAudience = false,
                         RequireExpirationTime = false,
                         ValidateLifetime = true
-                    }; 
+                    };
                 });
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -136,7 +139,6 @@ namespace Chinook.API.Configurations
 
         public static void AddSwaggerServices(this IServiceCollection services)
         {
-
             services.AddSwaggerGen();
             services.ConfigureOptions<ConfigureSwaggerOptions>();
         }
@@ -181,7 +183,7 @@ namespace Chinook.API.Configurations
             foreach (var description in provider.ApiVersionDescriptions)
             {
                 options.SwaggerDoc(
-                    description.GroupName, 
+                    description.GroupName,
                     CreateVersionInfo(description));
                 options.EnableAnnotations();
             }

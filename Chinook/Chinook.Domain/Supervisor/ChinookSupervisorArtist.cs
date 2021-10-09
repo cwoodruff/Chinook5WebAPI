@@ -19,9 +19,10 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var artist in artistApiModels)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Artist-", artist.Id), artist, (TimeSpan)cacheEntryOptions);
             }
 
@@ -43,9 +44,10 @@ namespace Chinook.Domain.Supervisor
                 var artistApiModel = artist.Convert();
                 artistApiModel.Albums = (await _albumRepository.GetByArtistId(artist.Id)).ConvertAll().ToList();
 
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Artist-", artistApiModel.Id), artistApiModel, (TimeSpan)cacheEntryOptions);
 
                 return artistApiModel;

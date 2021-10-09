@@ -11,7 +11,9 @@ namespace Chinook.Data.Repositories
 {
     public class TrackRepository : BaseRepository<Track>, IDisposable, ITrackRepository
     {
-        public TrackRepository(ChinookContext context) : base(context) {}
+        public TrackRepository(ChinookContext context) : base(context)
+        {
+        }
 
         public void Dispose() => _context.Dispose();
 
@@ -25,10 +27,12 @@ namespace Chinook.Data.Repositories
             await _context.Tracks.Where(a => a.MediaTypeId == id).AsNoTrackingWithIdentityResolution().ToListAsync();
 
         public async Task<List<Track>> GetByPlaylistId(int id) =>
-            await _context.PlaylistTracks.Where(p => p.PlaylistId == id).Select(p => p.Track).AsNoTrackingWithIdentityResolution().ToListAsync();
+            await _context.PlaylistTracks.Where(p => p.PlaylistId == id).Select(p => p.Track)
+                .AsNoTrackingWithIdentityResolution().ToListAsync();
 
         public async Task<List<Track>> GetByArtistId(int id) =>
-            await _context.Albums.Where(a => a.ArtistId == 5).SelectMany(t => t.Tracks).AsNoTrackingWithIdentityResolution().ToListAsync();
+            await _context.Albums.Where(a => a.ArtistId == 5).SelectMany(t => t.Tracks)
+                .AsNoTrackingWithIdentityResolution().ToListAsync();
 
         public async Task<List<Track>> GetByInvoiceId(int id) => await _context.Tracks
             .Where(c => c.InvoiceLines.Any(o => o.InvoiceId == id))

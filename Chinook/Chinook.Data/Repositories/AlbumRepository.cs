@@ -11,7 +11,9 @@ namespace Chinook.Data.Repositories
 {
     public class AlbumRepository : BaseRepository<Album>, IAlbumRepository, IDisposable
     {
-        public AlbumRepository(ChinookContext context) : base(context) {}
+        public AlbumRepository(ChinookContext context) : base(context)
+        {
+        }
 
         public void Dispose() => _context.Dispose();
 

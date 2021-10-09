@@ -3,8 +3,9 @@ namespace Chinook.Domain.Exceptions
     public class CustomerProblemException : ProblemDetailsException
     {
         public int CustomerId { get; set; }
-        
-        public CustomerProblemException(int status, string type, string title, string detail, string instance, int artistId)
+
+        public CustomerProblemException(int status, string type, string title, string detail, string instance,
+            int artistId)
         {
             Status = status;
             Type = type;

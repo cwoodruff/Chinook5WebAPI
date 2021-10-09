@@ -11,7 +11,7 @@ namespace Chinook.Domain.Entities
             InvoiceLines = new HashSet<InvoiceLine>();
             PlaylistTracks = new HashSet<PlaylistTrack>();
         }
-        
+
         public string Name { get; set; }
         public int AlbumId { get; set; }
         public int MediaTypeId { get; set; }

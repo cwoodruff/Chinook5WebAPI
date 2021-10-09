@@ -12,7 +12,7 @@ namespace Chinook.Domain.Entities
             Customers = new HashSet<Customer>();
             InverseReportsToNavigation = new HashSet<Employee>();
         }
-        
+
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Title { get; set; }

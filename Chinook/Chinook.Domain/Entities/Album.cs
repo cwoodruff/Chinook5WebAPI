@@ -12,7 +12,7 @@ namespace Chinook.Domain.Entities
         {
             Tracks = new HashSet<Track>();
         }
-        
+
         public string Title { get; set; }
         public int ArtistId { get; set; }
 

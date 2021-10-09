@@ -3,8 +3,9 @@ namespace Chinook.Domain.Exceptions
     public class MediaTypeProblemException : ProblemDetailsException
     {
         public int MediaTypeId { get; set; }
-        
-        public MediaTypeProblemException(int status, string type, string title, string detail, string instance, int artistId)
+
+        public MediaTypeProblemException(int status, string type, string title, string detail, string instance,
+            int artistId)
         {
             Status = status;
             Type = type;

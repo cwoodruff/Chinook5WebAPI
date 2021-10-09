@@ -14,6 +14,7 @@ namespace Chinook.Data.Data
         }
 
         public virtual DbSet<Album> Albums { get; set; }
+
         //public virtual DbSet<AlbumWithArtistName> AlbumWithArtistNames { get; set; }
         public virtual DbSet<Artist> Artists { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }

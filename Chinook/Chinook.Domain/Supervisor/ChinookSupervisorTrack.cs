@@ -23,7 +23,8 @@ namespace Chinook.Domain.Supervisor
                 cacheEntryOptions.SetSlidingExpiration(TimeSpan.FromSeconds(3600));
                 cacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(86400);
 
-                await _distributedCache.SetStringAsync($"Track-{track.Id}", JsonSerializer.Serialize(track), cacheEntryOptions);
+                await _distributedCache.SetStringAsync($"Track-{track.Id}", JsonSerializer.Serialize(track),
+                    cacheEntryOptions);
             }
 
             return trackApiModels;
@@ -60,7 +61,8 @@ namespace Chinook.Domain.Supervisor
                 cacheEntryOptions.SetSlidingExpiration(TimeSpan.FromSeconds(3600));
                 cacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(86400);
 
-                await _distributedCache.SetStringAsync($"Track-{track.Id}", JsonSerializer.Serialize(trackApiModel), cacheEntryOptions);
+                await _distributedCache.SetStringAsync($"Track-{track.Id}", JsonSerializer.Serialize(trackApiModel),
+                    cacheEntryOptions);
 
                 return trackApiModel;
             }

@@ -19,9 +19,10 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var invoice in invoiceApiModels)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Invoice-", invoice.Id), invoice, (TimeSpan)cacheEntryOptions);
             }
 
@@ -43,9 +44,10 @@ namespace Chinook.Domain.Supervisor
                 var invoiceApiModel = invoice.Convert();
                 invoiceApiModel.InvoiceLines = (await GetInvoiceLineByInvoiceId(invoiceApiModel.Id)).ToList();
 
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Invoice-", invoiceApiModel.Id), invoiceApiModel, (TimeSpan)cacheEntryOptions);
 
                 return invoiceApiModel;

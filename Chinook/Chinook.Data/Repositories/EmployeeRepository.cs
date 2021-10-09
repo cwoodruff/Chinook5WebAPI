@@ -11,7 +11,9 @@ namespace Chinook.Data.Repositories
 {
     public class EmployeeRepository : BaseRepository<Employee>, IDisposable, IEmployeeRepository
     {
-        public EmployeeRepository(ChinookContext context) : base(context) {}
+        public EmployeeRepository(ChinookContext context) : base(context)
+        {
+        }
 
         public void Dispose() => _context.Dispose();
 

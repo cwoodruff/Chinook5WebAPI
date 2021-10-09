@@ -20,7 +20,7 @@ namespace Chinook.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("CorsPolicy")]
-    [ApiVersion( "1.0" )]
+    [ApiVersion("1.0")]
     public class AlbumController : ControllerBase
     {
         private readonly IChinookSupervisor _chinookSupervisor;
@@ -36,16 +36,16 @@ namespace Chinook.API.Controllers
         [Produces(typeof(List<AlbumApiModel>))]
         public async Task<ActionResult<List<AlbumApiModel>>> Get()
         {
-            try  
-            {  
-                var albums = await _chinookSupervisor.GetAllAlbum();  
+            try
+            {
+                var albums = await _chinookSupervisor.GetAllAlbum();
 
-                if (albums.Any())  
-                {  
-                    return Ok(albums);  
-                }  
-                else  
-                {  
+                if (albums.Any())
+                {
+                    return Ok(albums);
+                }
+                else
+                {
                     var problemDetails = new AlbumProblemDetails
                     {
                         Status = StatusCodes.Status404NotFound,
@@ -61,10 +61,10 @@ namespace Chinook.API.Controllers
                         ContentTypes = { "application/problem+json" },
                         StatusCode = 404,
                     };
-                }  
-            }  
-            catch (AlbumProblemException ex)  
-            {  
+                }
+            }
+            catch (AlbumProblemException ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -81,8 +81,8 @@ namespace Chinook.API.Controllers
                     StatusCode = 403,
                 };
             }
-            catch (Exception ex)  
-            {  
+            catch (Exception ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status500InternalServerError,
@@ -92,7 +92,7 @@ namespace Chinook.API.Controllers
                     AlbumId = null,
                     Instance = HttpContext.Request.Path
                 };
-                _logger.LogError($"Something went wrong inside the AlbumController Add Album action: {ex}");  
+                _logger.LogError($"Something went wrong inside the AlbumController Add Album action: {ex}");
                 return new ObjectResult(problemDetails)
                 {
                     ContentTypes = { "application/problem+json" },
@@ -104,21 +104,21 @@ namespace Chinook.API.Controllers
         [HttpGet("{id}", Name = "GetAlbumById")]
         public async Task<ActionResult<AlbumApiModel>> Get(int id)
         {
-            try  
-            {  
-                var album = await _chinookSupervisor.GetAlbumById(id);  
+            try
+            {
+                var album = await _chinookSupervisor.GetAlbumById(id);
 
-                if (album != null)  
-                {  
-                    return Ok(album);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "Album Not Found");  
-                }  
-            }  
-            catch (AlbumProblemException ex)  
-            {  
+                if (album != null)
+                {
+                    return Ok(album);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "Album Not Found");
+                }
+            }
+            catch (AlbumProblemException ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -134,7 +134,7 @@ namespace Chinook.API.Controllers
                     ContentTypes = { "application/problem+json" },
                     StatusCode = 403,
                 };
-            } 
+            }
         }
 
         [HttpPost]
@@ -142,19 +142,19 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<AlbumApiModel>> Post([FromBody] AlbumApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Album is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.AddAlbum(input));
-                }  
+                }
             }
-            catch (ValidationException ex)  
-            {  
+            catch (ValidationException ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -171,8 +171,8 @@ namespace Chinook.API.Controllers
                     StatusCode = 403,
                 };
             }
-            catch (AlbumProblemException ex)  
-            {  
+            catch (AlbumProblemException ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -188,9 +188,9 @@ namespace Chinook.API.Controllers
                     ContentTypes = { "application/problem+json" },
                     StatusCode = 403,
                 };
-            } 
-            catch (Exception ex)  
-            {  
+            }
+            catch (Exception ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status500InternalServerError,
@@ -200,7 +200,7 @@ namespace Chinook.API.Controllers
                     AlbumId = null,
                     Instance = HttpContext.Request.Path
                 };
-                _logger.LogError($"Something went wrong inside the AlbumController Add Album action: {ex}");  
+                _logger.LogError($"Something went wrong inside the AlbumController Add Album action: {ex}");
                 return new ObjectResult(problemDetails)
                 {
                     ContentTypes = { "application/problem+json" },
@@ -214,19 +214,19 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<AlbumApiModel>> Put(int id, [FromBody] AlbumApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Album is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.UpdateAlbum(input));
-                }  
+                }
             }
-            catch (ValidationException  ex)  
-            {  
+            catch (ValidationException ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -236,15 +236,15 @@ namespace Chinook.API.Controllers
                     AlbumId = null,
                     Instance = HttpContext.Request.Path
                 };
-                _logger.LogError($"Something went wrong inside the AlbumController Update Album action: {ex}"); 
+                _logger.LogError($"Something went wrong inside the AlbumController Update Album action: {ex}");
                 return new ObjectResult(problemDetails)
                 {
                     ContentTypes = { "application/problem+json" },
                     StatusCode = 403,
                 };
             }
-            catch (Exception ex)  
-            {  
+            catch (Exception ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -254,7 +254,7 @@ namespace Chinook.API.Controllers
                     AlbumId = null,
                     Instance = HttpContext.Request.Path
                 };
-                _logger.LogError($"Something went wrong inside the AlbumController Update Album action: {ex}"); 
+                _logger.LogError($"Something went wrong inside the AlbumController Update Album action: {ex}");
                 return new ObjectResult(problemDetails)
                 {
                     ContentTypes = { "application/problem+json" },
@@ -266,12 +266,12 @@ namespace Chinook.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            try  
-            {  
-                return Ok(await _chinookSupervisor.DeleteAlbum(id)); 
-            }  
-            catch (Exception ex)  
-            {  
+            try
+            {
+                return Ok(await _chinookSupervisor.DeleteAlbum(id));
+            }
+            catch (Exception ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -281,7 +281,7 @@ namespace Chinook.API.Controllers
                     AlbumId = null,
                     Instance = HttpContext.Request.Path
                 };
-                _logger.LogError($"Something went wrong inside the AlbumController Delete action: {ex}");  
+                _logger.LogError($"Something went wrong inside the AlbumController Delete action: {ex}");
                 return new ObjectResult(problemDetails)
                 {
                     ContentTypes = { "application/problem+json" },
@@ -293,21 +293,21 @@ namespace Chinook.API.Controllers
         [HttpGet("artist/{id}")]
         public async Task<ActionResult<List<AlbumApiModel>>> GetByArtistId(int id)
         {
-            try  
-            {  
-                var albums = await _chinookSupervisor.GetAlbumByArtistId(id);  
+            try
+            {
+                var albums = await _chinookSupervisor.GetAlbumByArtistId(id);
 
-                if (albums.Any())  
-                {  
-                    return Ok(albums);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Albums Could Be Found for the Artist");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
+                if (albums.Any())
+                {
+                    return Ok(albums);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Albums Could Be Found for the Artist");
+                }
+            }
+            catch (Exception ex)
+            {
                 var problemDetails = new AlbumProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -317,13 +317,13 @@ namespace Chinook.API.Controllers
                     AlbumId = null,
                     Instance = HttpContext.Request.Path
                 };
-                _logger.LogError($"Something went wrong inside the AlbumController Get By Artist action: {ex}");  
+                _logger.LogError($"Something went wrong inside the AlbumController Get By Artist action: {ex}");
                 return new ObjectResult(problemDetails)
                 {
                     ContentTypes = { "application/problem+json" },
                     StatusCode = 403,
                 };
-            }  
+            }
         }
     }
 }

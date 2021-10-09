@@ -19,7 +19,7 @@ namespace Chinook.UnitTest.Validators
         {
             // Arrange
             var model = new AlbumApiModel { Title = null };
-            
+
             // Act
             var result = _validator.TestValidate(model);
 
@@ -32,7 +32,7 @@ namespace Chinook.UnitTest.Validators
         {
             // Arrange
             var model = new AlbumApiModel { Title = "Abbey Road" };
-            
+
             // Act
             var result = _validator.TestValidate(model);
 

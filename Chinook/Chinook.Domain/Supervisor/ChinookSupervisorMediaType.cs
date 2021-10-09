@@ -19,9 +19,10 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var mediaType in mediaTypeApiModels)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("MediaType-", mediaType.Id), mediaType, (TimeSpan)cacheEntryOptions);
             }
 
@@ -43,10 +44,12 @@ namespace Chinook.Domain.Supervisor
                 var mediaTypeApiModel = mediaType.Convert();
                 mediaTypeApiModel.Tracks = (await GetTrackByMediaTypeId(mediaTypeApiModel.Id)).ToList();
 
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
-                _cache.Set(string.Concat("MediaType-", mediaTypeApiModel.Id), mediaTypeApiModel, (TimeSpan)cacheEntryOptions);
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
+                _cache.Set(string.Concat("MediaType-", mediaTypeApiModel.Id), mediaTypeApiModel,
+                    (TimeSpan)cacheEntryOptions);
 
                 return mediaTypeApiModel;
             }

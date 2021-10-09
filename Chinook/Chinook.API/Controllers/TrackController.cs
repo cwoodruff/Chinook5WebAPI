@@ -17,7 +17,7 @@ namespace Chinook.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("CorsPolicy")]
-    [ApiVersion( "1.0" )]
+    [ApiVersion("1.0")]
     public class TrackController : ControllerBase
     {
         private readonly IChinookSupervisor _chinookSupervisor;
@@ -33,23 +33,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<TrackApiModel>>> Get()
         {
-            try  
-            {  
-                var tracks = await _chinookSupervisor.GetAllTrack();  
+            try
+            {
+                var tracks = await _chinookSupervisor.GetAllTrack();
 
-                if (tracks.Any())  
-                {  
-                    return Ok(tracks);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Get action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Tracks");  
+                if (tracks.Any())
+                {
+                    return Ok(tracks);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Get action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Tracks");
             }
         }
 
@@ -57,23 +58,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<TrackApiModel>> Get(int id)
         {
-            try  
-            {  
-                var track = await _chinookSupervisor.GetTrackById(id);  
+            try
+            {
+                var track = await _chinookSupervisor.GetTrackById(id);
 
-                if (track != null)  
-                {  
-                    return Ok(track);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "Track Not Found");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController GetById action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get Track By Id");  
+                if (track != null)
+                {
+                    return Ok(track);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "Track Not Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController GetById action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get Track By Id");
             }
         }
 
@@ -82,26 +84,26 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<TrackApiModel>> Post([FromBody] TrackApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Track is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.AddTrack(input));
-                }  
+                }
             }
-            catch (ValidationException  ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Add Track action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Tracks");  
+            catch (ValidationException ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Add Track action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Tracks");
             }
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Add Track action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Tracks");  
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Add Track action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Tracks");
             }
         }
 
@@ -110,40 +112,43 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<TrackApiModel>> Put(int id, [FromBody] TrackApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Track is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.UpdateTrack(input));
-                }  
+                }
             }
-            catch (ValidationException  ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Update Track action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Update Tracks");  
+            catch (ValidationException ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Update Track action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Update Tracks");
             }
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Update Track action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Update Tracks");  
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Update Track action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Update Tracks");
             }
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            try  
-            {  
-                return Ok(await _chinookSupervisor.DeleteTrack(id)); 
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Delete action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Delete Track");  
+            try
+            {
+                return Ok(await _chinookSupervisor.DeleteTrack(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Delete action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Delete Track");
             }
         }
 
@@ -151,23 +156,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<TrackApiModel>>> GetByArtistId(int id)
         {
-            try  
-            {  
-                var tracks = await _chinookSupervisor.GetTrackByArtistId(id);  
+            try
+            {
+                var tracks = await _chinookSupervisor.GetTrackByArtistId(id);
 
-                if (tracks.Any())  
-                {  
-                    return Ok(tracks);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Artist");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Get By Artist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Tracks for Artist");  
+                if (tracks.Any())
+                {
+                    return Ok(tracks);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Artist");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Get By Artist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Tracks for Artist");
             }
         }
 
@@ -175,23 +181,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<TrackApiModel>>> GetByInvoiceId(int id)
         {
-            try  
-            {  
-                var tracks = await _chinookSupervisor.GetTrackByInvoiceId(id);  
+            try
+            {
+                var tracks = await _chinookSupervisor.GetTrackByInvoiceId(id);
 
-                if (tracks.Any())  
-                {  
-                    return Ok(tracks);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Invoice");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Get By Invoice action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Tracks for Invoice");  
+                if (tracks.Any())
+                {
+                    return Ok(tracks);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Invoice");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Get By Invoice action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Tracks for Invoice");
             }
         }
 
@@ -199,23 +206,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<TrackApiModel>>> GetByAlbumId(int id)
         {
-            try  
-            {  
-                var tracks = await _chinookSupervisor.GetTrackByAlbumId(id);  
+            try
+            {
+                var tracks = await _chinookSupervisor.GetTrackByAlbumId(id);
 
-                if (tracks.Any())  
-                {  
-                    return Ok(tracks);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Album");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Get By Album action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Tracks for Album");  
+                if (tracks.Any())
+                {
+                    return Ok(tracks);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Album");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Get By Album action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Tracks for Album");
             }
         }
 
@@ -223,23 +231,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<TrackApiModel>>> GetByMediaTypeId(int id)
         {
-            try  
-            {  
-                var tracks = await _chinookSupervisor.GetTrackByMediaTypeId(id);  
+            try
+            {
+                var tracks = await _chinookSupervisor.GetTrackByMediaTypeId(id);
 
-                if (tracks.Any())  
-                {  
-                    return Ok(tracks);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Media Type");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Get By Media Type action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Tracks for Media Type");  
+                if (tracks.Any())
+                {
+                    return Ok(tracks);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Media Type");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Get By Media Type action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Tracks for Media Type");
             }
         }
 
@@ -247,52 +256,54 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<TrackApiModel>>> GetByGenreId(int id)
         {
-            try  
-            {  
-                var tracks = await _chinookSupervisor.GetTrackByGenreId(id);  
+            try
+            {
+                var tracks = await _chinookSupervisor.GetTrackByGenreId(id);
 
-                if (tracks.Any())  
-                {  
-                    return Ok(tracks);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Genre");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the TrackController Get By Genre action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get All Tracks for Genre");  
+                if (tracks.Any())
+                {
+                    return Ok(tracks);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Tracks Could Be Found for the Genre");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the TrackController Get By Genre action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get All Tracks for Genre");
             }
         }
 
-        [HttpPatch("{id}")]  
-        public async Task<ActionResult<TrackApiModel>> Patch(int id, [FromBody] JsonPatchDocument<TrackApiModel> input)  
-        {  
-            var track = await _chinookSupervisor.GetTrackById(id);  
-  
-            if (track == null)  
-            {  
-                return NotFound();  
-            }  
-  
-            input.ApplyTo(track, ModelState); // Must have Microsoft.AspNetCore.Mvc.NewtonsoftJson installed  
-  
-            if (!ModelState.IsValid)  
-            {  
-                return BadRequest(ModelState);  
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<TrackApiModel>> Patch(int id, [FromBody] JsonPatchDocument<TrackApiModel> input)
+        {
+            var track = await _chinookSupervisor.GetTrackById(id);
+
+            if (track == null)
+            {
+                return NotFound();
             }
 
-            try  
-            {  
+            input.ApplyTo(track, ModelState); // Must have Microsoft.AspNetCore.Mvc.NewtonsoftJson installed  
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
                 await _chinookSupervisor.UpdateTrack(track); //Update in the database
-            }  
-            catch (DbUpdateConcurrencyException)  
-            {  
-                return NotFound(); 
-            }  
-            return Ok(track);  
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+
+            return Ok(track);
         }
     }
 }

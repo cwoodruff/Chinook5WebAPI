@@ -19,9 +19,10 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var playList in playlistApiModels)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Playlist-", playList.Id), playList, (TimeSpan)cacheEntryOptions);
             }
 
@@ -43,10 +44,12 @@ namespace Chinook.Domain.Supervisor
                 var playlistApiModel = playlist.Convert();
                 playlistApiModel.Tracks = (await GetTrackByMediaTypeId(playlistApiModel.Id)).ToList();
 
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
-                _cache.Set(string.Concat("Playlist-", playlistApiModel.Id), playlistApiModel, (TimeSpan)cacheEntryOptions);
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
+                _cache.Set(string.Concat("Playlist-", playlistApiModel.Id), playlistApiModel,
+                    (TimeSpan)cacheEntryOptions);
 
                 return playlistApiModel;
             }

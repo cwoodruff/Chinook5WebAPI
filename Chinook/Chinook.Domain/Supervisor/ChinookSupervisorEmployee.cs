@@ -18,9 +18,10 @@ namespace Chinook.Domain.Supervisor
 
             foreach (var employee in employeeApiModels)
             {
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
                 _cache.Set(string.Concat("Employee-", employee.Id), employee, (TimeSpan)cacheEntryOptions);
             }
 
@@ -41,10 +42,12 @@ namespace Chinook.Domain.Supervisor
                 if (employee == null) return null;
                 var employeeApiModel = employee.Convert();
 
-                var cacheEntryOptions = 
+                var cacheEntryOptions =
                     new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(604800))
-                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);;
-                _cache.Set(string.Concat("Employee-", employeeApiModel.Id), employeeApiModel, (TimeSpan)cacheEntryOptions);
+                        .AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(604800);
+                ;
+                _cache.Set(string.Concat("Employee-", employeeApiModel.Id), employeeApiModel,
+                    (TimeSpan)cacheEntryOptions);
 
                 return employeeApiModel;
             }

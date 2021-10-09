@@ -18,7 +18,7 @@ namespace Chinook.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("CorsPolicy")]
-    [ApiVersion( "1.0" )]
+    [ApiVersion("1.0")]
     public class ArtistController : ControllerBase
     {
         private readonly IChinookSupervisor _chinookSupervisor;
@@ -34,21 +34,21 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<List<ArtistApiModel>>> Get()
         {
-            try  
-            {  
-                var artists = await _chinookSupervisor.GetAllArtist();  
+            try
+            {
+                var artists = await _chinookSupervisor.GetAllArtist();
 
-                if (artists.Any())  
-                {  
-                    return Ok(artists);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "No Artists Could Be Found");  
-                }  
-            }  
-            catch (ArtistProblemException ex)  
-            {  
+                if (artists.Any())
+                {
+                    return Ok(artists);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "No Artists Could Be Found");
+                }
+            }
+            catch (ArtistProblemException ex)
+            {
                 var problemDetails = new ArtistProblemDetails
                 {
                     Status = StatusCodes.Status404NotFound,
@@ -71,23 +71,24 @@ namespace Chinook.API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<ArtistApiModel>> Get(int id)
         {
-            try  
-            {  
-                var artist = await _chinookSupervisor.GetArtistById(id);  
+            try
+            {
+                var artist = await _chinookSupervisor.GetArtistById(id);
 
-                if (artist != null)  
-                {  
-                    return Ok(artist);  
-                }  
-                else  
-                {  
-                    return StatusCode((int)HttpStatusCode.NotFound, "Artist Not Found");  
-                }  
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the ArtistController GetById action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Get Artist By Id");  
+                if (artist != null)
+                {
+                    return Ok(artist);
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "Artist Not Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the ArtistController GetById action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Get Artist By Id");
             }
         }
 
@@ -96,26 +97,28 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<ArtistApiModel>> Post([FromBody] ArtistApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Artist is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.AddArtist(input));
-                }  
+                }
             }
-            catch (ValidationException  ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the ArtistController Add Artist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Artists");  
+            catch (ValidationException ex)
+            {
+                _logger.LogError($"Something went wrong inside the ArtistController Add Artist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Add Artists");
             }
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the ArtistController Add Artist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Add Artists");  
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the ArtistController Add Artist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Add Artists");
             }
         }
 
@@ -124,40 +127,43 @@ namespace Chinook.API.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<ArtistApiModel>> Put(int id, [FromBody] ArtistApiModel input)
         {
-            try  
-            {  
-                if (input == null)  
-                {  
+            try
+            {
+                if (input == null)
+                {
                     return StatusCode((int)HttpStatusCode.BadRequest, "Given Artist is null");
-                }  
-                else  
+                }
+                else
                 {
                     return Ok(await _chinookSupervisor.UpdateArtist(input));
-                }  
+                }
             }
-            catch (ValidationException  ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the ArtistController Update Artist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Update Artists");  
+            catch (ValidationException ex)
+            {
+                _logger.LogError($"Something went wrong inside the ArtistController Update Artist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Update Artists");
             }
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the ArtistController Update Artist action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Update Artists");  
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the ArtistController Update Artist action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Update Artists");
             }
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            try  
-            {  
-                return Ok(await _chinookSupervisor.DeleteArtist(id)); 
-            }  
-            catch (Exception ex)  
-            {  
-                _logger.LogError($"Something went wrong inside the ArtistController Delete action: {ex}");  
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error occurred while executing Delete Artist");  
+            try
+            {
+                return Ok(await _chinookSupervisor.DeleteArtist(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside the ArtistController Delete action: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    "Error occurred while executing Delete Artist");
             }
         }
     }

@@ -11,7 +11,9 @@ namespace Chinook.Data.Repositories
 {
     public class PlaylistRepository : BaseRepository<Playlist>, IDisposable, IPlaylistRepository
     {
-        public PlaylistRepository(ChinookContext context) : base(context) {}
+        public PlaylistRepository(ChinookContext context) : base(context)
+        {
+        }
 
         public void Dispose() => _context.Dispose();
 
