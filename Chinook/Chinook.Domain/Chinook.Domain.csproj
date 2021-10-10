@@ -5,14 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.3.3"/>
-        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3"/>
-        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="5.0.1"/>
+        <PackageReference Include="FluentValidation" Version="10.3.3" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="5.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="Entities\AlbumWithArtistName.cs"/>
+        <Compile Remove="Entities\AlbumWithArtistName.cs" />
     </ItemGroup>
 
 </Project>
