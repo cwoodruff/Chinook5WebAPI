@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using Chinook.Data.Repositories;
 using Chinook.Domain.ApiModels;
 using Chinook.Domain.Repositories;
 using Chinook.Domain.Supervisor;
@@ -21,6 +20,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+
+using Chinook.Data.Repositories;
+//using Chinook.DataDapper.Repositories;
+//using Chinook.DataJson.Repositories;
 
 namespace Chinook.API.Configurations
 {
