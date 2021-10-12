@@ -49,7 +49,7 @@ namespace Chinook.DataDapper.Repositories
         {
             using var cn = Connection;
             cn.Open();
-            var customers = await cn.QueryAsync<Customer>("Select * From Customer WHERE ArtistId = @Id", new { id });
+            var customers = await cn.QueryAsync<Customer>("Select * From Customer WHERE SupportRepId = @Id", new { id });
             return customers.ToList();
         }
 

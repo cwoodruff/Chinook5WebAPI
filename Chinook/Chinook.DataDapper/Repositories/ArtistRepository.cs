@@ -49,7 +49,6 @@ namespace Chinook.DataDapper.Repositories
         {
             using var cn = Connection;
             cn.Open();
-
             newArtist.Id = await cn.InsertAsync(new Artist { Name = newArtist.Name });
 
             return newArtist;

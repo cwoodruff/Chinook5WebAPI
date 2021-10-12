@@ -58,8 +58,7 @@ namespace Chinook.DataDapper.Repositories
         {
             using var cn = Connection;
             cn.Open();
-            var albumId = await cn.InsertAsync(newAlbum);
-            newAlbum.Id = albumId;
+            newAlbum.Id = await cn.InsertAsync(newAlbum);
 
             return newAlbum;
         }

@@ -47,7 +47,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
             return converted;
         }
 
@@ -62,7 +62,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
 
             return converted.FirstOrDefault();
         }
@@ -110,7 +110,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
             return converted;
         }
 
@@ -125,7 +125,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
             return converted;
         }
 
@@ -140,7 +140,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
             return converted;
         }
 
@@ -155,7 +155,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
             return converted;
         }
 
@@ -170,7 +170,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
             return converted;
         }
 
@@ -185,7 +185,7 @@ namespace Chinook.DataJson.Repositories
             var adap = new SqlDataAdapter(sqlcomm);
             adap.Fill(dset);
             var converted =
-                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString(), typeof(List<Track>)) as List<Track>;
+                JsonSerializer.Deserialize(dset.Tables[0].Rows[0][0].ToString() ?? string.Empty, typeof(List<Track>)) as List<Track>;
             return converted;
         }
     }
